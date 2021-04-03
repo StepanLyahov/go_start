@@ -1,11 +1,12 @@
 package main
 
 import (
-//"fmt"
-//"go_start/my_module"
+	"fmt"
+	"go_start/greetings"
 )
 
 func main() {
-	//message := my_module.GetHelloStr()
-	//fmt.Println(message)
+	// Get a greeting message and print it.
+	message := greetings.Hello("Gladys")
+	fmt.Println(message)
 }
