@@ -15,13 +15,16 @@ func init() {
 }
 
 func main() {
+
+	names := []string{"Stepan", "Julia", "Eva"}
+	messages, error := greetings.Hellos(names)
+
 	// Get a greeting message and print it.
-	message, error := greetings.Hello("Stepan")
 	//message, error := greetings.Hello("")
 
 	if error != nil {
 		log.Fatal(error)
 	}
 
-	fmt.Println(message)
+	fmt.Println(messages)
 }
