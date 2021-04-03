@@ -3,6 +3,9 @@ package greetings
 import (
 	"errors"
 	"fmt"
+	"log"
+	"math/rand"
+	"time"
 )
 
 // Hello returns a greeting for the named person.
@@ -13,6 +16,29 @@ func Hello(name string) (string, error) {
 	}
 
 	// Return a greeting that embeds the name in a message.
-	message := fmt.Sprintf("Hi, %v. Welcome!", name)
+	message := fmt.Sprintf(randomFormat(), name)
 	return message, nil
+}
+
+// Add an init function to seed the rand package with the current time.
+// Go executes init functions automatically at program startup,
+// after global variables have been initialized.
+// For more about init functions, see Effective Go.
+// https://golang.org/doc/effective_go#init
+func init() {
+	log.SetPrefix("info: ")
+	log.SetFlags(log.Lshortfile)
+	time := time.Now().UnixNano()
+	log.Print(time)
+
+	rand.Seed(time)
+}
+
+func randomFormat() string {
+	formats := []string{
+		"Hi, %v. Welcome!",
+		"Great to see you, %v!",
+		"Hail, %v! Well met!",
+	}
+	return formats[rand.Intn(len(formats))]
 }
