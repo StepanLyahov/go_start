@@ -15,3 +15,19 @@ func FindPosByValueInt(arr []int, val int) (int, error) {
 
 	return -1, errors.New("arr is not contains this val")
 }
+
+func BubbleSort(arr []int) {
+	len := len(arr)
+
+	if len == 0 || len == 1 {
+		return
+	}
+
+	for i := 0; i < len; i++ {
+		for j := 0; j < len; j++ {
+			if arr[i] <= arr[j] {
+				arr[j], arr[i] = arr[i], arr[j]
+			}
+		}
+	}
+}

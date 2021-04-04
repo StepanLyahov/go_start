@@ -1,6 +1,10 @@
 package arr_utils
 
-import "testing"
+import (
+	"reflect"
+	"sort"
+	"testing"
+)
 
 func TestFindPosByContainsValue(t *testing.T) {
 	arr := []int{1, 2, 3, 4, 5}
@@ -31,5 +35,17 @@ func TestFindPosByValueWithVoidArr(t *testing.T) {
 	if res != -1 || err == nil {
 		t.Fatalf("FindPosByValue(%v, %v) = (-1, `arr is void`), but now res: %v, err: nil",
 			arr, 0, res)
+	}
+}
+
+func TestBubbleSort(t *testing.T) {
+	arr := []int{5, 4, 2, 1, 3}
+	BubbleSort(arr)
+
+	arrSorted := []int{5, 4, 2, 1, 3}
+	sort.Ints(arrSorted)
+
+	if reflect.DeepEqual(arr, arrSorted) != true {
+		t.Fatalf("BubbleSort: Expected resulit is %v but return %v", arrSorted, arr)
 	}
 }
